@@ -1,0 +1,23 @@
+{
+    "customer": {
+        "username": "admin",
+        "password": "admin",
+        "email": "test@example.com",
+        "accounts": [
+            {
+                "username": "admin",
+                "password": "admin",
+                "level": 10,
+                "BE": 30000,
+                "email": "firstAccount@example.com"
+            },
+            {
+                "username": "secondAccount",
+                "password": "test",
+                "level": 25,
+                "BE": 45000,
+                "email": "secondAccount@example.com"
+            }
+        ]
+    }
+}
