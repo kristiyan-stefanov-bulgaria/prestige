@@ -2,6 +2,24 @@ const mongoose = require('mongoose');
 
 const accountsSchema = require('./user.accounts.model').accountsSchema;
 
+const eventsSchema = new mongoose.Schema({
+  type: Number,
+  name: {
+    type: String,
+    minlength: 1,
+    maxlength: 50,
+  },
+  note: {
+    type: String,
+    minlength: 1,
+    maxlength: 50,
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -25,7 +43,8 @@ const userSchema = new mongoose.Schema({
   license: {
     active: Boolean,
     expiry: Date
-  }
+  },
+  events: [eventsSchema]
 });
 
 const User = mongoose.model('User', userSchema);
