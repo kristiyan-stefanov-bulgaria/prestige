@@ -1,4 +1,4 @@
-const { CustomAPI } = require("../models");
+const { CustomAPI, User } = require("../models");
 
 
 /**
@@ -25,9 +25,15 @@ const customAPIKeyAuth = async (req, res, next) => {
   }
 
   res.locals.apiKeyID = apiKey._id;
-
+  res.locals.userID = await getUserByAPIKey(apiKey._id)
   next();
 }
+
+const getUserByAPIKey = async (apiKeyID) => {
+  const user = await User.find({ customAPI: apiKeyID })
+
+  return user;
+};
 
 /**
  * Checks if a given expiration date has already passed.
