@@ -10,8 +10,12 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "mongoose": "^7.3.0",
     "morgan": "~1.9.1",
     "mysql2": "^3.3.5",
     "node-json-db": "^2.2.0"
+  },
+  "devDependencies": {
+    "chance": "^1.1.11"
   }
 }
