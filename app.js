@@ -4,8 +4,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const sendAccountRouter = require('./routes/sendAccount');
-const receiveAccountRouter = require('./routes/receiveAccountTEST');
+const sendAccountRouter = require('./routes/api/sendAccount');
+const receiveAccountRouter = require('./routes/api/receiveAccountTEST');
+const customAPI = require('./routes/api/customAPI');
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/sendaccount', sendAccountRouter);
 app.use('/api/customer/receive', receiveAccountRouter);
+app.use('/api/customAPI', customAPI);
 
 module.exports = app;
