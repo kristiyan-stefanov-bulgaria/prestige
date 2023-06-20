@@ -7,6 +7,8 @@ const indexRouter = require('./routes/index');
 const sendAccountRouter = require('./routes/api/sendAccount');
 const receiveAccountRouter = require('./routes/api/receiveAccountTEST');
 const customAPI = require('./routes/api/customAPI');
+const licenseRouter = require('./routes/api/customAPI/license');
+const logicProfiles = require('./routes/api/customAPI/logicProfiles');
 
 const app = express();
 
@@ -20,5 +22,7 @@ app.use('/', indexRouter);
 app.use('/api/sendaccount', sendAccountRouter);
 app.use('/api/customer/receive', receiveAccountRouter);
 app.use('/api/customAPI', customAPI);
+app.use('/api/customAPI/license', licenseRouter)
+app.use('/api/customAPI/logicProfiles', logicProfiles)
 
 module.exports = app;

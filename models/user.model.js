@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'CustomAPI'
   }],
+  logicProfiles: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'LogicProfile'
+  }],
   license: {
     active: Boolean,
     expiry: Date

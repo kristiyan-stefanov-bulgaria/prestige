@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const { customAPIKeyAuth } = require('../../../middlewares/apiAuth');
-const { User } = require('../../../models');
 const apiKeyController = require('../../../controllers/apiKeyController');
 
 router.post('/addAPIKey', async (req, res) => {
@@ -25,7 +23,7 @@ router.post('/addAPIKey', async (req, res) => {
 });
 
 router.delete('/deleteAPIKey', async (req, res) => {
-  const { apiKey, userID } = req.body;
+  const { apiKey, userID } = req.query;
   // Example request:  DELETE localhost:3000/api/customAPI/deleteAPI with payload {"apiKey": "prestigeBot.ccf601ec175dc4265a3eb2f835a5b46367dcc90a5dcab8b38dc58baee9e8f9686bd73ff392781b35c63728", "userID": "6491028eb963d3a07390873e"}
 
   const { success, message } = await apiKeyController.deleteAPIKey(apiKey, userID);
@@ -48,17 +46,6 @@ router.patch('/refreshAPIKey', async (req, res) => {
   }
 
   return res.status(500).json({ success: false, message });
-});
-
-router.get('/getLicense', customAPIKeyAuth, async (req, res) => {
-  const apiKeyID = res.locals.apiKeyID
-  const user = await User.find({ customAPI: apiKeyID });
-
-  if (user.length <= 0) {
-    return res.status(200).json({ success: false, message: 'No license found.' });
-  }
-
-  return res.status(200).json({ success: true, license: user[0].license });
 });
 
 module.exports = router;
