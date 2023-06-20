@@ -17,7 +17,11 @@ const userSchema = new mongoose.Schema({
   customAPI: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'CustomAPI'
-  }]
+  }],
+  license: {
+    active: Boolean,
+    expiry: Date
+  }
 });
 
 const User = mongoose.model('User', userSchema);

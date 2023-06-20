@@ -52,7 +52,11 @@ router.get('/test', async function(req, res, next) {
       "Key": null,
       "ClaimedMissions": ['Daily Mission 1','Daily Mission 2'],
       "MetaData": null
-    }]
+    }],
+    license: {
+      active: true,
+      expiry: new Date('2023-10-10 03:56:23'),
+    }
   });
 
   await userDoc.save();

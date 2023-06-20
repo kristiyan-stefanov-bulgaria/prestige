@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const { customAPIKeyAuth } = require('../../../middlewares/apiAuth');
+const { User } = require('../../../models');
 const apiKeyController = require('../../../controllers/apiKeyController');
 
 router.post('/addAPIKey', async (req, res) => {
@@ -46,6 +48,18 @@ router.patch('/refreshAPIKey', async (req, res) => {
   }
 
   return res.status(500).json({ success: false, message });
+});
+
+router.get('/getLicense', customAPIKeyAuth, async (req, res) => {
+  const apiKeyID = res.locals.apiKeyID
+  const user = await User.find({ customAPI: apiKeyID });
+  console.log(JSON.stringify(user[0].license))
+
+  if (user.length <= 0) {
+    return res.status(200).json({ success: false, message: 'No license found.' });
+  }
+
+  return res.status(200).json({ success: true, license: user[0].license });
 });
 
 module.exports = router;
