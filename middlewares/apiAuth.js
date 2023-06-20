@@ -1,5 +1,10 @@
 const { CustomAPI } = require("../models");
 
+
+/**
+ * Middleware for custom API key authentication.
+ * Checks if the API key provided is valid.
+ */
 const customAPIKeyAuth = async (req, res, next) => {
   const apiKeyReq = req.headers['x-api-key'];
 
@@ -24,10 +29,23 @@ const customAPIKeyAuth = async (req, res, next) => {
   next();
 }
 
+/**
+ * Checks if a given expiration date has already passed.
+ *
+ * @param {Date} expires - The expiration date to check.
+ * @returns {boolean} - Indicates if the expiration date has passed.
+ */
 const isExpired = (expires) => {
   return new Date().getTime() > expires;
 }
 
+/**
+ * Checks if an API key exists in the CustomAPI collection.
+ *
+ * @async
+ * @param {string} apiKey - The API key to check for existence.
+ * @returns {Promise<boolean>} - A promise that resolves if this API key exists.
+ */
 const getAPIKey = async (apiKey) => {
   let result = await CustomAPI.find({ apiKey: apiKey }).limit(1);
 

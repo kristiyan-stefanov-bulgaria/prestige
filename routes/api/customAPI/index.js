@@ -53,7 +53,6 @@ router.patch('/refreshAPIKey', async (req, res) => {
 router.get('/getLicense', customAPIKeyAuth, async (req, res) => {
   const apiKeyID = res.locals.apiKeyID
   const user = await User.find({ customAPI: apiKeyID });
-  console.log(JSON.stringify(user[0].license))
 
   if (user.length <= 0) {
     return res.status(200).json({ success: false, message: 'No license found.' });
