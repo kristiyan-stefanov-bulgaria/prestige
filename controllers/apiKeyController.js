@@ -130,7 +130,7 @@ const deleteAPIKey = async (apiKey, userID) => {
  * @param {string} userID - The ID of the user associated with the API key.
  * @returns {Promise<{ success: boolean, message: string }>} - A promise that resolves to an object indicating the success status and a message.
  */
-const refreshAPIKey = async (apiKey, userID) => {
+const refreshAPIKey = async (apiKey) => {
   const customAPIKey = await getAPIKey(apiKey);
 
   if (customAPIKey.length === 0) {
@@ -140,18 +140,12 @@ const refreshAPIKey = async (apiKey, userID) => {
     };
   }
 
-  if (!ObjectId.isValid(userID))
-    return { success: false, message: "Invalid userID." };
-
   try {
     await CustomAPI.updateOne(
       { _id: customAPIKey[0]._id },
       { $set: { expires: new Date(Date.now() + 1000 * 3600 * 24 * 100) } }
     );
-    await User.updateOne(
-      { _id: userID },
-      { $pull: { customAPI: customAPIKey[0]._id } }
-    );
+
     return {
       success: true,
       message: "API key refreshed.",

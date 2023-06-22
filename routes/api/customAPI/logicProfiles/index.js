@@ -15,7 +15,7 @@ router.get('/getLogicProfiles', customAPIKeyAuth, async (req, res) => {
 });
 
 router.patch('/updateLogicProfile', customAPIKeyAuth, async (req, res) => {
-    const { success, message } = await logicProfileController.updateLogicProfile(req.body, res.locals.userID);
+    const { success, message } = await logicProfileController.updateLogicProfile(req.body);
 
     if (success) {
         return res.status(200).json({ success, message });

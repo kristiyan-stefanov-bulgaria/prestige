@@ -31,9 +31,9 @@ const getLogicProfiles = async (userID) => {
  * @param {string} userID - The ID of the user associated with the logic profile.
  * @returns {Promise<{ success: boolean, message: string }>} - A promise that resolves to an object indicating the success status and a message.
  */
-const updateLogicProfile = async (logicProfileData, userID) => {
-  if (!userID || logicProfileData.length <= 0) {
-    return { success: false, message: 'No logic profile ID provided.' }
+const updateLogicProfile = async (logicProfileData) => {
+  if (logicProfileData.length <= 0) {
+    return { success: false, message: 'No logic profile provided.' }
   }
 
   const logicProfile = await LogicProfile.findOne({ _id: logicProfileData._id });
@@ -43,11 +43,6 @@ const updateLogicProfile = async (logicProfileData, userID) => {
 
   try {
     await LogicProfile.updateOne({ _id: logicProfile._id }, logicProfileData);
-
-    await User.updateOne(
-      { _id: userID },
-      { $pull: { logicProfiles: logicProfile._id } }
-    );
 
     return { success: true, message: 'Logic profile updated successfully.' }
   } catch (error) {
