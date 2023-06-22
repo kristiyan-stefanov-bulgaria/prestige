@@ -39,7 +39,7 @@ router.patch('/refreshAPIKey', async (req, res) => {
   // Example request:  PATCH localhost:3000/api/customAPI/refreshApiKey with payload {"apiKey": "prestigeBot.bab1f6759e309aaa200279be0cb8677bf42a0bc5da08731c349e6b31c2a16e04ccd45c874b741e38094d02e2b9663bd901c", "userID": "6491028eb963d3a07390873e"}
   const { apiKey, userID } = req.body;
 
-  const { success, message } = await apiKeyController.refreshAPIKey(apiKey, userID);
+  const { success, message } = await apiKeyController.refreshAPIKey(apiKey);
 
   if (success) {
     return res.status(200).json({ success, message: 'API key refreshed.' });

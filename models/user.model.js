@@ -44,7 +44,11 @@ const userSchema = new mongoose.Schema({
     active: Boolean,
     expiry: Date
   },
-  events: [eventsSchema]
+  events: [eventsSchema],
+  storageProfiles: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'StorageProfiles'
+  }]
 });
 
 const User = mongoose.model('User', userSchema);
