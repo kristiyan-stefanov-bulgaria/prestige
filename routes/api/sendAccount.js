@@ -8,7 +8,7 @@ const { User } = require('../../models');
 
 router.get('/test', async function(req, res, next) {
   let userDoc = new User({
-    name: "Bambi",
+    name: "Bambi123",
     password: "MRPrestigeCodeIsSus",
     accounts: [{
       "id": 18036,
