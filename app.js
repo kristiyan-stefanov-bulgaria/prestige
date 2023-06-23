@@ -11,6 +11,7 @@ const licenseRouter = require('./routes/api/customAPI/license');
 const logicProfiles = require('./routes/api/customAPI/logicProfiles');
 const eventsRouter = require('./routes/api/customAPI/events');
 const storageProfilesRouter = require('./routes/api/customAPI/storageProfiles');
+const graphRouter = require('./routes/api/customAPI/graphs');
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.use('/api/customAPI/license', licenseRouter);
 app.use('/api/customAPI/logicProfiles', logicProfiles);
 app.use('/api/customAPI/events', eventsRouter);
 app.use('/api/customAPI/storageProfiles', storageProfilesRouter);
+app.use('/api/customAPI/graphs', graphRouter);
 
 module.exports = app;
