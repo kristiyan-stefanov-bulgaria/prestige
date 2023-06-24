@@ -41,7 +41,7 @@ const deleteEvent = async (userID, eventID) => {
   }
 
   try {
-    let a = await User.updateOne({ _id: userID }, { $pull: { events: { _id : eventID } } });
+    await User.updateOne({ _id: userID }, { $pull: { events: { _id : eventID } } });
 
     return { success: true, message: 'Event deleted successfully' }
 

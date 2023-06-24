@@ -12,6 +12,7 @@ const logicProfiles = require('./routes/api/customAPI/logicProfiles');
 const eventsRouter = require('./routes/api/customAPI/events');
 const storageProfilesRouter = require('./routes/api/customAPI/storageProfiles');
 const graphRouter = require('./routes/api/customAPI/graphs');
+const cloudRouter = require('./routes/api/customAPI/cloud');
 
 const app = express();
 
@@ -30,5 +31,6 @@ app.use('/api/customAPI/logicProfiles', logicProfiles);
 app.use('/api/customAPI/events', eventsRouter);
 app.use('/api/customAPI/storageProfiles', storageProfilesRouter);
 app.use('/api/customAPI/graphs', graphRouter);
+app.use('/api/customAPI/cloud', cloudRouter);
 
 module.exports = app;

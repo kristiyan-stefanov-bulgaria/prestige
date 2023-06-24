@@ -7,9 +7,9 @@ const addStorageProfile = async (storageProfile, userID) => {
     await storageProfileDoc.save();
     await User.findOneAndUpdate({ _id: userID }, { $push: { storageProfiles: storageProfileDoc._id } });
 
-    return { status: 200, message: 'Storage profile added successfully' };
+    return { success: true, message: 'Storage profile added successfully' };
   } catch (error) {
-    return { status: 500, message: error.message };
+    return { success: false, message: error.message };
   }
 };
 
@@ -18,10 +18,10 @@ const deleteStorageProfile = async (storageProfileID, userID) => {
     await StorageProfiles.findOneAndDelete({ _id: storageProfileID });
     await User.findOneAndUpdate({ _id: userID }, { $pull: { storageProfiles: storageProfileID } });
 
-    return { status: 200, message: 'Storage profile deleted successfully' };
+    return { success: true, message: 'Storage profile deleted successfully' };
 
   } catch (error) {
-    return { status: 500, message: error.message };
+    return { success: false, message: error.message };
   }
 };
 

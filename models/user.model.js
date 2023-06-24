@@ -72,7 +72,11 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'StorageProfiles'
   }],
-  graph: graphSchema
+  graph: graphSchema,
+  cloud: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Cloud'
+  }]
 });
 
 const User = mongoose.model('User', userSchema);

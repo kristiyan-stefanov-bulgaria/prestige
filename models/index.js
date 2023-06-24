@@ -3,3 +3,4 @@ module.exports.Accounts = require('./user.accounts.model');
 module.exports.CustomAPI = require('./customAPI.model')
 module.exports.LogicProfile = require('./logicProfile.model')
 module.exports.StorageProfiles = require('./storageProfile.model')
+module.exports.Cloud = require('./cloud.model')
